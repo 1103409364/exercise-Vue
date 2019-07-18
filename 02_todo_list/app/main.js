@@ -3,22 +3,7 @@ import Vue from 'vue';
 var app = new Vue({
 	el: '#app',
 	data: {
-		message: 'Hello Vue123!',
-		firstName: '',
-		lastName: '',
-		count: 0
-	},
-	// 计算后属性, 根据其他属性计算出结果
-	computed: {
-		fullName: function () {
-			return this.firstName + this.lastName
-		}
-	},
-	// 侦听器, 监听某个数据的变化, 执行业务逻辑
-	watch: {
-		fullName: function () {
-			this.count++
-		}
+		message: 'Hello Vue123!'
 	}
 });
 
@@ -33,11 +18,6 @@ var app3 = new Vue({
 	el: '#app-3',
 	data: {
 		seen: true
-	},
-	methods: {
-		handleClick: function() {
-			this.seen = !this.seen;
-		}
 	}
 });
 
@@ -124,20 +104,20 @@ vm.message = '123456789';
 var example2 = new Vue({
 	el: '#example-2',
 	data: {
-		name: 'Vue.js'
+	  name: 'Vue.js'
 	},
 	// 在 `methods` 对象中定义方法
 	methods: {
-		greet: function (event) {
-			// `this` 在方法里指向当前 Vue 实例
-			alert('Hello ' + this.name + '!')
-			// `event` 是原生 DOM 事件
-			if (event) {
-				console.log(event);
-			}
+	  greet: function (event) {
+		// `this` 在方法里指向当前 Vue 实例
+		alert('Hello ' + this.name + '!')
+		// `event` 是原生 DOM 事件
+		if (event) {
+		  console.log(event);
 		}
+	  }
 	}
-})
-
+  })
+  
   // 也可以用 JavaScript 直接调用方法
 //   example2.greet() // => 'Hello Vue.js!'

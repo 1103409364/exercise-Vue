@@ -11,6 +11,9 @@
 <body>
 	<div id="app">
 		<h1>{{message}}</h1>
+		姓: <input v-model="firstName" />
+		名: <input v-model="lastName" />
+		<div>fullName:{{fullName}};count:{{count}}</div>
 	</div>
 
 	<div id="app-2">
@@ -20,12 +23,16 @@
 	</div>
 
 	<div id="app-3">
+		<!-- if dom 会移除, show 是利用 css 来控制 -->
 		<p v-if="seen">现在你看到我了</p>
+		<p v-show="seen">现在你看到我了</p>
+		<button @click="handleClick">按我</button>
 	</div>
 
 	<div id="app-4">
 		<ol>
-			<li v-for="todo in todos">
+			<!--v-for... of 和 in 都可以 -->
+			<li v-for="(todo, index) of todos" :key="index" > 
 				{{ todo.text }}
 			</li>
 		</ol>
