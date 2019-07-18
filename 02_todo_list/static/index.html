@@ -5,29 +5,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>hello</title>
+	<title>todo_list</title>
 </head>
 
 <body>
-	<div id="app">
-		<h1 v-on:click="handleClick" >{{message}}</h1>
+<div id="app">
+	<div>
+		<input v-model="inputValue" />
+		<button @click="handleSubmit">提交</button>
 	</div>
-
-	<!-- <script src="./dev/bundle.js"></script> -->
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script>
-		var app = new Vue({
-			el: '#app',
-			data: { 
-				message: 'Hello Vue1111!'
-			},
-			methods: {
-				handleClick: function() {
-					this.message = 123
-				}
-			}
-		})
-	</script>
+	<ul>
+		<!-- <li v-for="(item, index) of todos">{{item}}</li> -->
+		<!-- 通过 content 属性向组件传 item, 组件需要手动接收一下 -->
+		<!-- 删除功能 父组件监听自定义事件 delete -->
+		<todo-item 
+			v-for="(item, index) of todos" 
+			:content="item"
+			:index="index"
+			@delete="handleDelete"
+		></todo-item>
+	</ul>
+</div>
+	<script src="./dev/bundle.js"></script>
 </body>
 
 </html>

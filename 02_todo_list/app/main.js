@@ -1,123 +1,42 @@
 import Vue from 'vue';
+// 全局组件
+// Vue.component('todo-item', {
+// 	template: '<li>item</li>'
+// });
 
-var app = new Vue({
+// 局部组件, 每个组件都是 Vue 实例, 和 new 出来的一样, 可以有 methods 属性等等
+// 父子组件传值: 父 → 子 通过 props, 子 → 父 通过子组件发布一个事件, 父组件监听(订阅)这个事件, 来传值
+var TodoItem = {
+	// 往这个组件里传值，需要使用下面的属性接收
+	props: ['content', 'index'],
+	template: '<li>{{content}}-{{index}}<button @click="handleClick">移除</button></li>',
+	methods: {
+		handleClick: function () {
+			// $emit 触发一个自定义事件, 传递一个参数 发布订阅模式
+			this.$emit('delete', this.index);
+		}
+	}
+}
+
+new Vue({ //根实例, 如果不定义模板, 会把挂载点内的内容当作模板
 	el: '#app',
+	// 局部组件要在这个实例的属性中注册
+	components: {
+		'todo-item': TodoItem
+	},
 	data: {
-		message: 'Hello Vue123!'
-	}
-});
-
-var app2 = new Vue({
-	el: '#app-2',
-	data: {
-		message: '页面加载于 ' + new Date().toLocaleString()
-	}
-});
-
-var app3 = new Vue({
-	el: '#app-3',
-	data: {
-		seen: true
-	}
-});
-
-var app4 = new Vue({
-	el: '#app-4',
-	data: {
-		todos: [
-			{ text: '学习 JavaScript' },
-			{ text: '学习 Vue' },
-			{ text: '整个牛项目' }
-		]
-	}
-});
-app4.todos.push({ text: '新项目' });
-
-var app5 = new Vue({
-	el: '#app-5',
-	data: {
-		message: 'hello Vue.js'
+		inputValue: 'todo',
+		todos: [1, 'a', 2, 3]
 	},
 	methods: {
-		reverseMessage: function () {
-			this.message = this.message.split('').reverse().join('')
+		handleSubmit: function () {
+			this.todos.push(this.inputValue);
+			this.inputValue = '';
+		},
+		// 子组件传过来的参数 index
+		handleDelete: function (index) {
+			console.log(index);
+			this.todos.splice(index, 1);
 		}
 	}
 });
-
-var app6 = new Vue({
-	el: '#app-6',
-	data: {
-		message: 'Hello Vue!'
-	},
-	// 生命周期钩子函数,不要在选项属性或回调上使用箭头函数
-	created: function () {
-		// `this` 指向创建的实例
-		console.log('message is: ' + this.message);
-	}
-});
-
-// message 属性被添加到实例对象 app6 中
-console.log(app6.message); //输出 'Hello Vue!'
-
-// 使用$watch 监听 message 变化
-app6.$watch('message', () => console.log('message change'));
-
-Vue.component('todo-item', {
-	// todo-item 组件现在接受一个
-	// "prop"，类似于一个自定义特性。
-	// 这个 prop 名为 todo。
-	props: ['todo'],
-	template: '<li>{{ todo.text }}</li>'
-});
-
-var app7 = new Vue({
-	el: '#app-7',
-	data: {
-		groceryList: [
-			{ id: 0, text: '蔬菜' },
-			{ id: 1, text: '奶酪' },
-			{ id: 2, text: '随便其它什么人吃的东西' }
-		]
-	}
-});
-
-console.log(app7.$data.groceryList[0].text);
-
-// 计算属性和侦听器
-var vm = new Vue({
-	el: '#example',
-	data: {
-		message: 'Hello'
-	},
-	computed: {
-		// 计算属性的 getter
-		reversedMessage: function () {
-			// `this` 指向 vm 实例
-			return this.message.split('').reverse().join('')
-		}
-	}
-})
-
-vm.message = '123456789';
-
-var example2 = new Vue({
-	el: '#example-2',
-	data: {
-	  name: 'Vue.js'
-	},
-	// 在 `methods` 对象中定义方法
-	methods: {
-	  greet: function (event) {
-		// `this` 在方法里指向当前 Vue 实例
-		alert('Hello ' + this.name + '!')
-		// `event` 是原生 DOM 事件
-		if (event) {
-		  console.log(event);
-		}
-	  }
-	}
-  })
-  
-  // 也可以用 JavaScript 直接调用方法
-//   example2.greet() // => 'Hello Vue.js!'
