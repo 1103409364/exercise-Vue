@@ -4,7 +4,7 @@
     <input v-model="inputValue" />
     <button @click="handleSubmit">提交</button>
     <ul>
-      <todo-item
+        <todo-item
         v-for="(item, index) of todos"
         :content="item"
         :index="index"
@@ -17,27 +17,27 @@
 
 <script>
 // 逻辑 data 变成了函数, 返回值是一个对象是数据
-import TodoItem from "./components/TodoItem";
+import TodoItem from './components/TodoItem'
 export default {
   components: {
-    "todo-item": TodoItem
+    'todo-item': TodoItem
   },
-  data: function() {
+  data: function () {
     return {
-      inputValue: "",
+      inputValue: '',
       todos: [1, 2, 3]
-    };
+    }
   },
   methods: {
-    handleSubmit() {
-      this.todos.push(this.inputValue);
-      this.inputValue = "";
+    handleSubmit () {
+      this.todos.push(this.inputValue)
+      this.inputValue = ''
     },
-    handleClick(index) {
-      this.todos.splice(index, 1);
+    handleClick (index) {
+      this.todos.splice(index, 1)
     }
   }
-};
+}
 </script>
 
 <style>
