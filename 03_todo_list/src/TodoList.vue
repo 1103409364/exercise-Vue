@@ -16,7 +16,8 @@
 </template>
 
 <script>
-// 逻辑 data 变成了函数, 返回值是一个对象是数据
+// 数据,逻辑
+// data 变成了函数, 返回值是一个对象是数据
 import TodoItem from './components/TodoItem'
 export default {
   components: {
@@ -41,4 +42,5 @@ export default {
 </script>
 
 <style>
+/* 样式 */
 </style>
