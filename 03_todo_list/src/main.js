@@ -6,6 +6,7 @@ import TodoList from './TodoList'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+// 根实例, 如果没有模板, 会到挂载点去找
 new Vue({
   el: '#app',
   components: { TodoList },
