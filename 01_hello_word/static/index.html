@@ -72,6 +72,16 @@
 		<button v-on:click="greet">Greet</button>
 	</div>
 
+	<div id="app8">
+		<counter :count="0" @sum="handleSum"></counter>
+		<counter :count="1" @sum="handleSum"></counter>
+		<div>{{total}}</div>
+	</div>
+
+	<div id="app9">
+		<child></child>
+	</div>
+
 	<script src="./dev/bundle.js"></script>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script>

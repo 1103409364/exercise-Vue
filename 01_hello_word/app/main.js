@@ -8,7 +8,7 @@ var app = new Vue({
 		lastName: '',
 		count: 0
 	},
-	// 计算后属性, 根据其他属性计算出结果
+	// 计算后属性值是函数, 根据其他属性计算出结果, 内置缓存
 	computed: {
 		fullName: function () {
 			return this.firstName + this.lastName
@@ -19,8 +19,43 @@ var app = new Vue({
 		fullName: function () {
 			this.count++
 		}
-	}
+	},
+	// 生命周期
+	beforeCreate: function () {
+		console.log('beforeCreate');
+	},
+	created: function () {
+		console.log('created');
+	},
+	beforeMount: function () {
+		console.log(this.$el);
+		console.log('beforeMount');
+	},
+	mounted: function () {
+		console.log(this.$el);
+		console.log('monted');
+	},
+	beforeDestroy: function () {
+		console.log(this.$el);
+		console.log('beforeDestroy');
+	},
+	destroyed: function () {
+		console.log(this.$el);
+		console.log('destroyed');
+	},
+	beforeUpdate: function () {
+		console.log(this.$el);
+		console.log('beforeUpdate');
+	},
+	updated: function () {
+		console.log(this.$el);
+		console.log('updated');
+	},
 });
+
+app.message = '111'
+// app.$destroy();
+// window.app = app;
 
 var app2 = new Vue({
 	el: '#app-2',
@@ -35,7 +70,7 @@ var app3 = new Vue({
 		seen: true
 	},
 	methods: {
-		handleClick: function() {
+		handleClick: function () {
 			this.seen = !this.seen;
 		}
 	}
@@ -139,5 +174,36 @@ var example2 = new Vue({
 	}
 })
 
-  // 也可以用 JavaScript 直接调用方法
+// 也可以用 JavaScript 直接调用方法
 //   example2.greet() // => 'Hello Vue.js!'
+
+var counter = {
+	props: ['count'],
+	template: '<div @click="handleClick">{{number}}</div>',
+	data: function () {
+		return {
+			number: this.count
+		}
+	},
+	methods: {
+		handleClick: function () {
+			this.number++;
+			this.$emit('sum', this.number);
+		}
+	}
+}
+
+new Vue({
+	el: '#app8',
+	data: {
+		total: 5
+	},
+	components: {
+		counter
+	},
+	methods: {
+		handleSum: function (step) {
+			this.total += step;
+		}
+	}
+})
