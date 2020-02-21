@@ -1,0 +1,271 @@
+@import '~./mixin.styl'
+html
+  width: 100%
+  height: 100%
+  font-size: ($vw_fontsize / ($vw_design / 2)) * 100vw
+  // font-size: 10px !important
+  @media screen and (max-width: 320px) {
+    font-size: 64px;
+  }
+  @media screen and (min-width: 540px) {
+    font-size: 108px;
+  }
+input:disabled
+  color: #555
+  -webkit-text-fill-color:#555
+  -webkit-opacity:1
+  opacity: 1
+  background-color: #fff
+body
+  width: 100%
+  height: 100%
+  max-width: 540px
+  min-width: 320px
+  font-size: 14px
+// reset css
+ul,li
+  margin: 0
+  padding: 0
+  list-style none
+p
+  margin 0
+  padding 0
+input,textarea,button,select,a{outline:0 none;border: none;}
+button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
+
+// 分割的样式
+.my-divider
+  width: 100%
+  height rem(6)
+  background: #f5f5f5
+// 一页的样式
+.onepage
+  height 100%
+  position relative
+  .pagemain
+    height "calc(100% - %s)" %rem(50)
+    .main-content
+      height "calc(100% - %s)" %44px
+      overflow-y: auto
+      -webkit-overflow-scrolling:touch
+.mu-form-item .mu-button
+  margin: 0px 0px
+.childpage
+  position fixed
+  z-index 1003
+  top: 0
+  left 0
+  background #fff
+  height 100%
+  width 100%
+//列表行
+.wrap
+  padding-left rem(0)
+  .list
+    padding-left rem(15)
+    min-height rem(44)
+    display flex
+    align-items center
+    background: #fff
+    &.hei
+      height rem(60)
+      padding-left rem(10)
+      margin-bottom rem(10)
+    .gray
+      color: #777
+  .label
+    min-width rem(70)
+  .content
+    flex 1
+    display flex
+    align-items center
+    justify-content flex-end
+    .space
+      width rem(20)
+      overflow hidden
+      flex-basis rem(20)
+      min-height 1px
+      display flex
+      align-items center
+      justify-content center
+      i
+        color: #b5b5b5
+        font-size rem(20)
+// 区域选择
+.mytest
+  height 100%
+  overflow-y auto
+  -webkit-overflow-scrolling: touch
+.mu-divider
+  background-color: rgba(0, 0, 0, 0.05)
+.mu-drawer
+  width: rem(300) !important
+  overflow-y: scroll
+  -webkit-overflow-scrolling: touch
+.select
+  height 100%
+  overflow hidden
+  .title
+    background #fbfbfb
+    color #b5b5b5
+    line-height 35px
+    height 35px
+    padding-left 12px
+  .part
+    padding-left 12px
+    border-bottom 1px solid #e5e5e5
+    .level
+      line-height 35px
+      height 35px
+    ul
+      width 100%
+      // ios 12不支持 wrap 换行,改用行内块
+      // display: flex
+      // flex-wrap wrap
+      .select-item
+        display inline-block
+        margin-right rem(11)
+        margin-bottom rem(12)
+        background #f4f4f4
+        height rem(33)
+        width rem(80)
+        line-height rem(33)
+        text-align center
+        color #666
+        border-radius rem(2)
+        &.actived
+          color #fff
+          background #1998f4
+          // background #aae1ff
+// 没有边框的input
+.noborder-input
+  border: none
+  box-shadow: 0px 0px 0px 0px
+  outline: none
+  text-align: right
+  &::-webkit-input-placeholder
+    color rgb(128,128,128)
+.noborder-right
+  border-right: none !important
+.bottom
+  position fixed
+  bottom 0
+  width 100%
+// 页面底部大提交按钮
+.submitButtonBig
+  position fixed
+  width 100%
+  padding 0 rem(30)
+  bottom rem(15)
+
+// 标签
+.tag
+  // width rem(54)
+  text-align center
+  border: 1px solid #b5b5b5
+  color: #b5b5b5
+  display: inline-block
+  border-radius: 2px
+  line-height: rem(20)
+  height rem(20)
+  font-size: 12px
+  padding: 0 5px
+// 园标签
+.rlabel
+  box-sizing: border-box
+  color: #2ba8f7
+  border: 1px solid #2ba8f7
+  border-radius: rem(20)
+  // line-height: rem(20)
+  // height rem(20)
+  padding: 0 rem(8)
+  font-size: rem(12)
+  .iconfont
+    vertical-align: middle
+    margin-right rem(4)
+    font-size: rem(12)
+.tag.pri
+  width rem(38)
+  height rem(20)
+  border: 1px solid #2ba8f7
+  color: #fff
+  background: #2ba8f7
+  margin: 0 rem(15) 0 rem(5)
+  font-size: rem(12)
+.tag.pripain
+  border: 1px solid #2ba8f7
+  color: #2ba8f7
+.tag.pain
+  border: 1px solid #fff
+  color: #fff
+.tag.warn
+  color: rgb(236,0,0)
+  border: 1px solid rgb(236,0,0)
+.tag.yellow
+  color: #FF7F50
+  border: 1px solid #FF7F50
+.tag.warn.in
+  color: #fff
+  border: 1px solid #f21f2b
+  background: #f21f2b
+.tag.clean
+  color: rgb(6,202,108)
+  border: 1px solid rgb(6,202,108)
+.nolist
+  height 50px
+  line-height 50px
+  text-align: center
+  color: #777
+// flex
+.flex
+  display: flex
+  flex-wrap: wrap
+// flex 分散对齐
+.flex-sb
+  display: flex
+  justify-content space-between
+  align-items: center
+.flex-1
+  flex: 1
+// 向下margin5
+.mb6
+  margin-bottom rem(6)
+.mb5
+  margin-bottom: rem(5)
+.mb10
+  margin-bottom: rem(15)
+.mt6
+  margin-top rem(6)
+.mt10
+  margin-top: rem(10)
+.red
+  color: rgb(185,1,2)
+.rednew
+  color: rgb(185,1,2)
+.green
+  color: #61daa5
+.loading-con
+  height 30px
+  line-height: 30px
+  text-align center
+  background none
+  color #888
+.mu-expansion-panel__expand
+  margin: 0
+// 报修页面
+.panel
+  .panel-header
+    display flex
+    height rem(45)
+    justify-content space-between
+    align-items center
+    padding 0 rem(10)
+    border-bottom 1px solid rgb(242,242,242)
+  .panel-body
+    padding rem(10)
+    font-size rem(12)
+    img
+      height rem(54)
+      width rem(93)
+      // margin-right rem(5)
+      margin-bottom rem(5)
